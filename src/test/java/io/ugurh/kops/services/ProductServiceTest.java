@@ -70,4 +70,19 @@ class ProductServiceTest {
         assertEquals(1L, service.findAll().size());
     }
 
+    @Test
+    void testUpdateProduct() {
+        ProductDto product1 = new ProductDto();
+        product1.setName("Spring in Action Book");
+        service.create(product1);
+        assertEquals(1L, service.findAll().size());
+        List<ProductDto> pList = service.findAll();
+        ProductDto product = pList.get(0);
+        product.setName("Head First Design Patterns");
+        service.update(product);
+        List<ProductDto> pList2 = service.findAll();
+        ProductDto product2 = pList2.get(0);
+        assertEquals("Head First Design Patterns", product2.getName());
+    }
+
 }

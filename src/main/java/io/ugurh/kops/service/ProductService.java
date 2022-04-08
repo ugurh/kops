@@ -44,4 +44,8 @@ public class ProductService {
         productRepository.findById(id)
                 .ifPresent(productRepository::delete);
     }
+
+    public void update(ProductDto productDto) {
+        productRepository.save(productMapper.mapDtoToEntity(productDto));
+    }
 }

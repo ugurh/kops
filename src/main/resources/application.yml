@@ -4,11 +4,11 @@ logging:
       springframework: info
 
 server:
-  port: 8080
+  port: 8585
 
 management:
   server:
-    port: 8081
+    port: 8586
   endpoints:
     web:
       exposure:
@@ -17,8 +17,8 @@ management:
 spring:
   datasource:
     url: "jdbc:postgresql://localhost:5432/kops"
-    username: admin
-    password: passwd
+    username: postgres
+    password: 123456
     driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
