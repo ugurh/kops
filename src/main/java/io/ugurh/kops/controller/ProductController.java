@@ -3,13 +3,12 @@ package io.ugurh.kops.controller;
 import io.ugurh.kops.dto.ProductDto;
 import io.ugurh.kops.service.ProductService;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping(value = "/product")
 @Transactional
 public class ProductController {

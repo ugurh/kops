@@ -1,0 +1,25 @@
+logging:
+  level:
+    org:
+      springframework: info
+
+server:
+  port: 8585
+
+management:
+  server:
+    port: 8586
+  endpoints:
+    web:
+      exposure:
+        include: '*' # To enable the web exposure of all management endpoints
+
+spring:
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/kops"
+    username: postgres
+    password: 123456
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
