@@ -35,13 +35,13 @@ public class ProductService {
         productRepository.save(productMapper.mapDtoToEntity(productDto));
     }
 
-    public ProductDto findById(Long id) {
-        Product product = productRepository.getById(id);
+    public ProductDto findById(Long productId) {
+        Product product = productRepository.getById(productId);
         return productMapper.mapEntityToDto(product);
     }
 
-    public void remove(Long id) {
-        productRepository.findById(id)
+    public void remove(Long productId) {
+        productRepository.findById(productId)
                 .ifPresent(productRepository::delete);
     }
 
