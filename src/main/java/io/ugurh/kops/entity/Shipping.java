@@ -17,7 +17,7 @@ import javax.validation.constraints.NotNull;
 public class Shipping {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID", nullable = false)
     private Long id;
     @Length(min = 2, max = 60)

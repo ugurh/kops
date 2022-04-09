@@ -58,4 +58,65 @@ public class BookTest {
         assertEquals(1L, books.size());
     }
 
+    @Test
+    public void testGetById() {
+        Book newBook = new Book();
+        newBook.setName("Java Book");
+        Shipping newShipping = new Shipping();
+        newShipping.setCity("London");
+        newBook.setShipping(newShipping);
+        repo.save(newBook);
+
+        List<Book> books = repo.findAll();
+        Book book = books.get(0);
+
+        Book tempBook = repo.getById(book.getId());
+        assertEquals(tempBook.getName(), book.getName());
+    }
+
+    @Test
+    public void testDelete() {
+        Book book1 = new Book();
+        book1.setName("Java Book");
+        Shipping shipping1 = new Shipping();
+        shipping1.setCity("London");
+        book1.setShipping(shipping1);
+        repo.save(book1);
+
+        Book book2 = new Book();
+        book2.setName("Java SE Book");
+        Shipping shipping2 = new Shipping();
+        shipping2.setCity("Delhi");
+        book2.setShipping(shipping2);
+        repo.save(book2);
+
+        assertEquals(2L, repo.findAll().size());
+
+        repo.delete(book2);
+
+        assertEquals(1L, repo.findAll().size());
+    }
+
+    @Test
+    public void testUpdate() {
+        Book book1 = new Book();
+        book1.setName("Java Book");
+        Shipping shipping1 = new Shipping();
+        shipping1.setCity("London");
+        book1.setShipping(shipping1);
+        repo.save(book1);
+
+        assertEquals(1L, repo.findAll().size());
+
+        List<Book> books = repo.findAll();
+        Book updateBook = books.get(0);
+
+        Shipping shipping = updateBook.getShipping();
+        shipping.setCity("Delhi");
+        repo.save(updateBook);
+
+        List<Book> books1 = repo.findAll();
+        Book book3 = books1.get(0);
+        assertEquals("Delhi", book3.getShipping().getCity());
+    }
 }

@@ -1,0 +1,22 @@
+version: '3.3'
+services:
+  db:
+    container_name: kops_db
+    hostname: kops_db
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=123456
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+    networks:
+      - kops_net
+volumes:
+  db:
+    driver: local
+networks:
+  kops_net:
