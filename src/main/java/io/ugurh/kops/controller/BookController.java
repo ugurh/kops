@@ -5,12 +5,10 @@ import io.ugurh.kops.service.BookService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/books")
-@Transactional
 public class BookController {
 
     private final BookService service;

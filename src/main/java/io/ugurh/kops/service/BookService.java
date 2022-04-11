@@ -7,12 +7,10 @@ import io.ugurh.kops.mapper.BookMapper;
 import io.ugurh.kops.repository.BookRepository;
 import org.springframework.stereotype.Service;
 
-import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
-@Transactional
 public class BookService {
 
     private final BookRepository bookRepository;

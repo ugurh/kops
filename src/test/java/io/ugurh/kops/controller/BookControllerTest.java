@@ -69,8 +69,7 @@ class BookControllerTest {
         MockHttpServletRequestBuilder requestBuilder2 = MockMvcRequestBuilders.get("/books/findAll");
         MvcResult result = mockMvc.perform(requestBuilder2).andReturn();
         String response2 = result.getResponse().getContentAsString();
-        Type listType = new TypeToken<List<BookDto>>() {
-        }.getType();
+        Type listType = new TypeToken<List<BookDto>>() {}.getType();
         List<BookDto> bookDtos = gson.fromJson(response2, listType);
         BookDto bookDto2 = bookDtos.get(0);
         bookDto2.setName("JEFF");
@@ -85,8 +84,7 @@ class BookControllerTest {
         MockHttpServletRequestBuilder requestBuilder = MockMvcRequestBuilders.get("/books/findAll");
         MvcResult result = mockMvc.perform(requestBuilder).andReturn();
         String response2 = result.getResponse().getContentAsString();
-        Type listType = new TypeToken<List<BookDto>>() {
-        }.getType();
+        Type listType = new TypeToken<List<BookDto>>() {}.getType();
         List<BookDto> bookDtos = gson.fromJson(response2, listType);
         BookDto bookDto2 = bookDtos.get(0);
         MockHttpServletRequestBuilder requestBuilder2 = MockMvcRequestBuilders.post("/books/remove/" + bookDto2.getId());
