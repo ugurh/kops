@@ -1,4 +1,4 @@
-package io.ugurh.kops.model;
+package io.ugurh.kops.dao;
 
 import io.ugurh.kops.KopsApplication;
 import io.ugurh.kops.entity.Cart;

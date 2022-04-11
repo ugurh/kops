@@ -16,10 +16,9 @@ import javax.validation.constraints.NotNull;
 @Table(name = "CUSTOMERS")
 public class Customer {
 
-    @NotNull
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID", nullable = false)
+    @Column(name = "ID")
     private Long id;
     @NotNull
     @Column(name = "NAME", length = 50)
