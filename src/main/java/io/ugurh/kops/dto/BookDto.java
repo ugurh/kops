@@ -5,7 +5,10 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class ProductDto {
+public class BookDto {
+
     private Long id;
     private String name;
+    private ShippingDto shipping;
+
 }

@@ -5,12 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity(name = "Book")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
-@Builder
 @Table(name = "BOOKS")
 public class Book {
 

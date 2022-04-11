@@ -7,12 +7,9 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Entity(name = "Shipping")
-@AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@ToString
-@Builder
 @Table(name = "SHIPPING")
 public class Shipping {
 
