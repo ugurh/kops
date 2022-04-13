@@ -99,6 +99,9 @@ public class CustomerTest {
         List<Customer> customers = repo.findAll();
         Customer customer2 = customers.get(0);
         customer2.setName("Fred");
+        Cart cart2 = new Cart();
+        cart2.setAmount(300.0);
+        customer2.setCart(cart2);
         repo.save(customer2);
 
         List<Customer> customers1 = repo.findAll();

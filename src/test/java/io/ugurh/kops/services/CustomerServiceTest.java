@@ -32,7 +32,6 @@ class CustomerServiceTest {
         CartDto cartDto1 = new CartDto();
         cartDto1.setAmount(200.0);
         customerDto1.setCart(cartDto1);
-        cartDto1.setCustomer(customerDto1);
         customerService.create(customerDto1);
 
         CustomerDto customerDto2 = new CustomerDto();
@@ -40,12 +39,49 @@ class CustomerServiceTest {
         CartDto cartDto2 = new CartDto();
         cartDto2.setAmount(400.0);
         customerDto2.setCart(cartDto2);
-        cartDto2.setCustomer(customerDto2);
         customerService.create(customerDto2);
 
+        assertEquals(2L, customerService.findAll().size());
+    }
 
-        List<CustomerDto> x = customerService.findAll();
+    @Test
+    void testFindById() {
+        CustomerDto customerDto1 = new CustomerDto();
+        customerDto1.setName("Alex");
+        CartDto cartDto1 = new CartDto();
+        cartDto1.setAmount(200.0);
+        customerDto1.setCart(cartDto1);
+        customerService.create(customerDto1);
 
-        assertEquals(2L, x.size());
+        List<CustomerDto> customerDtos = customerService.findAll();
+        CustomerDto customerDto = customerDtos.get(0);
+
+        CustomerDto customerDto2 = customerService.findById(customerDto.getId());
+        assertEquals("Alex", customerDto2.getName());
+    }
+
+    @Test
+    void testRemove() {
+        CustomerDto customerDto1 = new CustomerDto();
+        customerDto1.setName("Alex");
+        CartDto cartDto1 = new CartDto();
+        cartDto1.setAmount(200.0);
+        customerDto1.setCart(cartDto1);
+        customerService.create(customerDto1);
+
+        CustomerDto customerDto2 = new CustomerDto();
+        customerDto2.setName("Fred");
+        CartDto cartDto2 = new CartDto();
+        cartDto2.setAmount(200.0);
+        customerDto2.setCart(cartDto2);
+        customerService.create(customerDto2);
+
+        assertEquals(2L, customerService.findAll().size());
+
+        List<CustomerDto> customerDtos = customerService.findAll();
+
+        CustomerDto customerDto = customerDtos.get(1);
+        customerService.remove(customerDto.getId());
+        assertEquals(1L, customerService.findAll().size());
     }
 }

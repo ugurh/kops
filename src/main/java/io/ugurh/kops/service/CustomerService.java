@@ -2,6 +2,8 @@ package io.ugurh.kops.service;
 
 import io.ugurh.kops.dto.CustomerDto;
 import io.ugurh.kops.entity.Customer;
+import io.ugurh.kops.entity.Product;
+import io.ugurh.kops.exceptions.ResourceNotFoundException;
 import io.ugurh.kops.mapper.CustomerMapper;
 import io.ugurh.kops.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
@@ -13,11 +15,10 @@ import java.util.List;
 public class CustomerService {
 
     private final CustomerRepository customerRepository;
-    private final CustomerMapper customerMapper;
 
-    public CustomerService(CustomerRepository customerRepository, CustomerMapper customerMapper) {
+
+    public CustomerService(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
-        this.customerMapper = customerMapper;
     }
 
     public List<CustomerDto> findAll() {
@@ -25,14 +26,25 @@ public class CustomerService {
         List<CustomerDto> customerDtos = new ArrayList<>();
         List<Customer> customers = customerRepository.findAll();
         for (Customer customer : customers) {
-            customerDtos.add(customerMapper.mapEntityToDto(customer));
+            customerDtos.add(CustomerMapper.INSTANCE.mapEntityToDto(customer));
         }
 
         return customerDtos;
     }
 
     public void create(CustomerDto customerDto) {
-        Customer customer = customerMapper.mapDtoToEntity(customerDto);
+        Customer customer = CustomerMapper.INSTANCE.mapDtoToEntity(customerDto);
         customerRepository.save(customer);
+    }
+
+    public CustomerDto findById(Long id) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(""));
+
+        return CustomerMapper.INSTANCE.mapEntityToDto(customer);
+    }
+
+    public void remove(Long id) {
+        Customer customer = customerRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(""));
+        customerRepository.delete(customer);
     }
 }
